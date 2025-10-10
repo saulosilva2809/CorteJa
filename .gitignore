@@ -106,3 +106,7 @@ cython_debug/
 # Arquivos específicos de SO
 .DS_Store
 Thumbs.db
+
+# Configuração e comandos Trae AI
+
+trae/
