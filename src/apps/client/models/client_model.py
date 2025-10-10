@@ -1,6 +1,6 @@
 from django.db import models
 
-from src.apps.base.models import BaseModel
+from apps.base.models import BaseModel
 
 
 class ClientModel(BaseModel):
