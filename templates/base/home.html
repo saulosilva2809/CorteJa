@@ -1,0 +1,343 @@
+{% extends "base.html" %}
+
+{% block title %}CorteJá · Sua experiência premium de barbearia{% endblock %}
+
+{% block head %}
+<style>
+  .hero {
+    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center;
+    margin: 28px 0 16px;
+  }
+  .hero-card {
+    position: relative; overflow: hidden;
+    background: url('https://picsum.photos/id/1011/1600/900') center/cover no-repeat;
+  }
+  .hero-card::before { content: ""; position: absolute; inset: 0; background: rgba(21,24,32,0.40); }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-card .card { position: relative; z-index: 1; }
+  .hero h1 { font-size: 44px; line-height: 1.1; margin: 0 0 16px; }
+  .hero p { margin: 0 0 24px; color: var(--muted); }
+  .hero-ctas { display: flex; gap: 14px; margin-top: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700;
+    border-radius: 12px; padding: 12px 18px;
+  }
+  .btn-primary { color: #0b0d11; background: linear-gradient(135deg, var(--primary), var(--accent)); box-shadow: var(--ring); }
+  .btn-ghost { color: var(--text); border: 1px solid rgba(255,255,255,0.14); }
+  .features { margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .feature { border: 1px solid rgba(255,255,255,0.10); padding: 8px 12px; border-radius: 999px; font-size: 13px; color: var(--muted); }
+
+  /* Serviços */
+  .services { margin-top: 40px; }
+  .service-card { display: flex; flex-direction: column; gap: 8px; }
+  .service-title { font-weight: 700; }
+  .price { color: var(--accent); font-weight: 700; }
+
+  /* Profissionais */
+  .pro-card { display: flex; gap: 20px; align-items: center; }
+  .avatar { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, #222733, #1a1f2a); border: 1px solid rgba(255,255,255,0.06); background-size: cover; background-position: center; }
+  .pro-card .info { flex: 1; }
+
+  /* Agenda */
+  .schedule { margin-top: 36px; }
+  .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+  .day { text-align: center; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); color: var(--muted); background: rgba(255,255,255,0.03); }
+  .day.active { background: linear-gradient(135deg, rgba(0,194,255,0.20), rgba(255,107,0,0.20)); color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+  }
+  /* Galeria */
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .gallery-item { aspect-ratio: 1/1; border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, #222733, #1a1f2a); border: 1px solid rgba(255,255,255,0.08); }
+  .gallery-item.large { grid-column: span 2; }
+  .gallery-ph { display: grid; place-items: center; color: var(--muted); font-size: 12px; height: 100%; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Depoimentos */
+  .testimonials { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+  .quote { font-style: italic; }
+  .stars { color: #f8d76e; }
+
+  /* Planos */
+  .plans { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+  .plan-card .price { font-size: 26px; font-weight: 800; color: var(--accent); }
+
+  /* FAQ */
+  .faq { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  .faq-item { border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; padding: 14px; background: rgba(255,255,255,0.03); }
+
+  /* Horários */
+  .schedule-table { width: 100%; border-collapse: collapse; }
+  .schedule-table th, .schedule-table td { border: 1px solid rgba(255,255,255,0.08); padding: 10px; text-align: left; }
+  .schedule-table th { color: var(--muted); font-weight: 600; }
+
+  /* Localização */
+  .map-card { height: 280px; display: grid; place-items: center; color: var(--muted); }
+
+  /* Novidades */
+  .news { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+  .news .title { font-weight: 700; }
+</style>
+{% endblock %}
+
+{% block content %}
+  <!-- HERO -->
+  <section class="hero card padded hero-card">
+    <div class="glow"></div>
+    <div class="hero-content">
+      <div class="pill">Experiência Premium</div>
+      <h1>Seu melhor corte começa aqui.</h1>
+      <p>Na CorteJá, cada detalhe importa — do atendimento ao acabamento. Faça login para acessar o agendamento e gerenciar seus serviços.</p>
+      <div class="hero-ctas">
+        <a href="/login" class="btn btn-primary">Entrar</a>
+        <a href="/signup" class="btn btn-ghost">Criar conta</a>
+      </div>
+      <div class="features">
+        <span class="feature">Profissionais experientes</span>
+        <span class="feature">Produtos premium</span>
+        <span class="feature">Ambiente climatizado</span>
+        <span class="feature">Pagamento facilitado</span>
+      </div>
+    </div>
+    <div class="card padded" style="align-self: stretch; display: grid; place-items: center;">
+      <div style="text-align:center">
+        <div class="pill">Promoção</div>
+        <h3 style="margin:10px 0 8px">Combo Corte + Barba</h3>
+        <p class="muted">Economize e saia com o visual completo.</p>
+        <div style="margin-top: 14px; font-size: 28px; font-weight: 800; color: var(--accent);">R$ 79</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="section services container-narrow">
+    <h2 class="section-title">Serviços</h2>
+    <p class="section-sub">Escolha o que combina com você.</p>
+    <div class="grid cols-3 section-content">
+      <div class="card padded service-card">
+        <div class="pill">Clássico</div>
+        <div class="service-title">Corte Masculino</div>
+        <div class="muted">Tesoura e máquina com acabamento impecável.</div>
+        <div class="price">R$ 49</div>
+      </div>
+      <div class="card padded service-card">
+        <div class="pill">Premium</div>
+        <div class="service-title">Barba Definida</div>
+        <div class="muted">Modelagem com toalha quente e balm.</div>
+        <div class="price">R$ 39</div>
+      </div>
+      <div class="card padded service-card">
+        <div class="pill">Especial</div>
+        <div class="service-title">Sobrancelha</div>
+        <div class="muted">Acabamento alinhado e natural.</div>
+        <div class="price">R$ 25</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFISSIONAIS -->
+  <section id="profissionais" class="section container-narrow">
+    <h2 class="section-title">Profissionais</h2>
+    <p class="section-sub">Equipe dedicada ao seu melhor visual.</p>
+    <div class="grid cols-3 section-content">
+      <div class="card padded pro-card">
+        <div class="avatar" style="background-image:url('https://picsum.photos/id/64/200/200');"></div>
+        <div class="info">
+          <strong>Rafael</strong>
+          <div class="muted">Especialista em cortes modernos</div>
+        </div>
+      </div>
+      <div class="card padded pro-card">
+        <div class="avatar" style="background-image:url('https://picsum.photos/id/65/200/200');"></div>
+        <div class="info">
+          <strong>Bruno</strong>
+          <div class="muted">Barba e acabamento premium</div>
+        </div>
+      </div>
+      <div class="card padded pro-card">
+        <div class="avatar" style="background-image:url('https://picsum.photos/id/66/200/200');"></div>
+        <div class="info">
+          <strong>Lucas</strong>
+          <div class="muted">Clássico com precisão</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTA E BENEFÍCIOS -->
+  <section id="conta" class="section container-narrow">
+    <h2 class="section-title">Sua conta</h2>
+    <p class="section-sub">Crie uma conta para agendar com facilidade e acompanhar seus serviços.</p>
+    <div class="grid cols-3 section-content">
+      <div class="card padded">
+        <strong>Agendamento disponível após login</strong>
+        <p class="muted">Acesse sua agenda, histórico e preferências.</p>
+        <a href="/login" class="btn btn-primary">Entrar</a>
+      </div>
+      <div class="card padded">
+        <strong>Crie sua conta</strong>
+        <p class="muted">Ganhe agilidade e personalize sua experiência.</p>
+        <a href="/signup" class="btn btn-ghost">Criar conta</a>
+      </div>
+      <div class="card padded">
+        <strong>Atendimento prioritário</strong>
+        <p class="muted">Clientes logados têm confirmação rápida de horário.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- GALERIA -->
+  <section id="galeria" class="section container-narrow">
+    <h2 class="section-title">Galeria</h2>
+    <p class="section-sub">Alguns resultados que nos orgulham.</p>
+    <div class="gallery-grid section-content">
+      <div class="gallery-item large"><img src="https://picsum.photos/id/1012/800/800" alt="Resultado de corte" /></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1015/400/400" alt="Ferramentas de barbearia" /></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1027/400/400" alt="Corte fade" /></div>
+      <div class="gallery-item large"><img src="https://picsum.photos/id/1035/800/800" alt="Barba definida" /></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1044/400/400" alt="Ambiente da barbearia" /></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1052/400/400" alt="Corte clássico" /></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- DEPOIMENTOS -->
+  <section id="depoimentos" class="section container-narrow">
+    <h2 class="section-title">Depoimentos</h2>
+    <p class="section-sub">A opinião de quem já é cliente.</p>
+    <div class="testimonials section-content">
+      <div class="card padded">
+        <div class="stars">★★★★★</div>
+        <p class="quote">“Melhor corte que já fiz, equipe super atenciosa.”</p>
+        <small class="muted">— Diego M.</small>
+      </div>
+      <div class="card padded">
+        <div class="stars">★★★★★</div>
+        <p class="quote">“Ambiente top e serviço impecável.”</p>
+        <small class="muted">— Carlos R.</small>
+      </div>
+      <div class="card padded">
+        <div class="stars">★★★★☆</div>
+        <p class="quote">“Rapidez e qualidade, recomendo.”</p>
+        <small class="muted">— Felipe A.</small>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PLANOS -->
+  <section id="planos" class="section container-narrow band">
+    <h2 class="section-title">Planos</h2>
+    <p class="section-sub">Assinaturas para manter seu visual sempre em dia.</p>
+    <div class="plans section-content">
+      <div class="card padded plan-card">
+        <div class="pill">Mensal</div>
+        <div class="title">Plano Essencial</div>
+        <p class="muted">1 corte por mês.</p>
+        <div class="price">R$ 39/mês</div>
+      </div>
+      <div class="card padded plan-card">
+        <div class="pill">Mensal</div>
+        <div class="title">Plano Premium</div>
+        <p class="muted">2 cortes + 1 barba.</p>
+        <div class="price">R$ 89/mês</div>
+      </div>
+      <div class="card padded plan-card">
+        <div class="pill">Mensal</div>
+        <div class="title">Plano Pro</div>
+        <p class="muted">3 cortes + 2 barbas.</p>
+        <div class="price">R$ 129/mês</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section id="faq" class="section container-narrow">
+    <h2 class="section-title">FAQ</h2>
+    <p class="section-sub">Perguntas frequentes sobre nossos serviços.</p>
+    <div class="faq section-content">
+      <div class="faq-item">
+        <strong>Preciso agendar para ser atendido?</strong>
+        <p class="muted">Sim, o agendamento é feito após login na plataforma.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Quais formas de pagamento?</strong>
+        <p class="muted">Aceitamos cartões, PIX e dinheiro.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Posso escolher o profissional?</strong>
+        <p class="muted">Sim, na hora de agendar você seleciona o profissional.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Há taxa de cancelamento?</strong>
+        <p class="muted">Cancelamentos até 2 horas antes não possuem taxa.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- HORÁRIOS -->
+  <section id="horarios" class="section container-narrow">
+    <h2 class="section-title">Horários</h2>
+    <p class="section-sub">Confira nossa disponibilidade geral.</p>
+    <div class="card padded section-content">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Dia</th><th>Aberto</th><th>Fechado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Segunda</td><td>09:00</td><td>20:00</td></tr>
+          <tr><td>Terça</td><td>09:00</td><td>20:00</td></tr>
+          <tr><td>Quarta</td><td>09:00</td><td>20:00</td></tr>
+          <tr><td>Quinta</td><td>09:00</td><td>20:00</td></tr>
+          <tr><td>Sexta</td><td>09:00</td><td>20:00</td></tr>
+          <tr><td>Sábado</td><td>09:00</td><td>18:00</td></tr>
+          <tr><td>Domingo</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- LOCALIZAÇÃO -->
+  <section id="localizacao" class="section container-narrow">
+    <h2 class="section-title">Localização</h2>
+    <p class="section-sub">Estamos no coração da cidade.</p>
+    <div class="card map-card section-content">
+      <div>Mapa incorporado em breve</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- NOVIDADES -->
+  <section id="novidades" class="section container-narrow">
+    <h2 class="section-title">Novidades</h2>
+    <p class="section-sub">Ofertas, eventos e comunicados.</p>
+    <div class="news section-content">
+      <div class="card padded">
+        <div class="title">Semana do Cliente</div>
+        <p class="muted">Descontos especiais para membros logados.</p>
+      </div>
+      <div class="card padded">
+        <div class="title">Novos produtos premium</div>
+        <p class="muted">Linha importada para cuidados diários.</p>
+      </div>
+      <div class="card padded">
+        <div class="title">Agenda de eventos</div>
+        <p class="muted">Workshops e demonstrações mensais.</p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}CorteJá · Barbearia{% endblock %}</title>
+  <meta name="description" content="CorteJá — Barbearia moderna com estilo, precisão e experiência premium." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1115;
+      --surface: #151820;
+      --text: #e6e6e6;
+      --muted: #a0a8b3;
+      --primary: #00c2ff;
+      --accent: #ff6b00;
+      --success: #2ecc71;
+      --danger: #ff4d4f;
+      --radius: 14px;
+      --ring: 0 0 0 1px rgba(255,255,255,0.06), 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image: linear-gradient(135deg, rgba(0, 194, 255, 0.10), rgba(255, 107, 0, 0.10));
+      background-blend-mode: soft-light;
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: Poppins, Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      line-height: 1.65;
+    }
+
+    /* Layout */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: rgba(15,17,21,0.65);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-weight: 700; letter-spacing: 0.5px; font-size: 20px;
+      text-decoration: none; color: var(--text);
+    }
+    .brand-badge {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: grid; place-items: center;
+      color: #0b0d11; font-weight: 800; box-shadow: var(--ring);
+    }
+    .menu { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; row-gap: 6px; }
+    .menu a {
+      color: var(--muted); text-decoration: none; font-weight: 500;
+      padding: 10px 14px; border-radius: 10px; transition: all .18s ease;
+    }
+    .menu a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+
+    .cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: #0b0d11; background: linear-gradient(135deg, var(--primary), var(--accent));
+      padding: 10px 16px; border-radius: 12px; font-weight: 700; text-decoration: none;
+      box-shadow: var(--ring);
+    }
+
+    main { padding: 36px 0 72px; }
+
+    /* Cards utilitários */
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      box-shadow: var(--ring);
+    }
+    .card.padded { padding: 28px; }
+    /* Respiro para botões em conteúdos de seção */
+    .section-content .btn { margin-top: 8px; }
+    .section-content .btn + .btn { margin-top: 12px; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(15,17,21,0.55);
+      backdrop-filter: saturate(140%) blur(8px);
+      padding: 30px 0;
+      color: var(--muted);
+    }
+
+    /* Utilidades */
+    .grid { display: grid; gap: 28px; }
+    .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .pill { border: 1px solid rgba(255,255,255,0.12); padding: 6px 12px; border-radius: 999px; font-size: 12px; color: var(--muted); }
+    .muted { color: var(--muted); }
+    .section-title { font-size: 28px; letter-spacing: 0.3px; margin: 0 0 16px; }
+    .section-sub { margin: 0; color: var(--muted); max-width: 72ch; }
+    .section { margin-top: 64px; margin-bottom: 92px; }
+    .section-content { margin-top: 24px; }
+    .section:last-of-type { margin-bottom: 96px; }
+    .container-narrow { max-width: 960px; margin: 0 auto; }
+
+    /* Espaçamento específico entre blocos críticos */
+    #servicos.section + .section { margin-top: 50px; }
+    #profissionais.section + .section { margin-top: 50px; }
+
+    /* Degradê por seção */
+    .section-gradient { background-blend-mode: soft-light; }
+    .section-gradient.grad-a {
+      background-image:
+        radial-gradient(900px 500px at 0% -10%, rgba(0, 194, 255, 0.08), transparent 60%),
+        radial-gradient(700px 400px at 100% 110%, rgba(255, 107, 0, 0.06), transparent 60%);
+    }
+    .section-gradient.grad-b {
+      background-image:
+        radial-gradient(800px 500px at 100% -10%, rgba(255, 107, 0, 0.08), transparent 60%),
+        radial-gradient(700px 400px at 0% 110%, rgba(0, 194, 255, 0.06), transparent 60%);
+    }
+    .section-gradient.grad-c {
+      background-image:
+        radial-gradient(700px 500px at 50% -20%, rgba(0, 194, 255, 0.06), transparent 60%),
+        radial-gradient(700px 500px at 50% 120%, rgba(255, 107, 0, 0.06), transparent 60%);
+    }
+
+    /* Subnav chips */
+    .subnav { border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(15,17,21,0.45); backdrop-filter: saturate(140%) blur(6px); }
+    .subnav .chips { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; }
+    .subnav .chips::-webkit-scrollbar { height: 8px; }
+    .subnav .chips::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 999px; }
+    .chip { color: var(--muted); text-decoration: none; border: 1px solid rgba(255,255,255,0.12); padding: 6px 12px; border-radius: 999px; font-size: 13px; white-space: nowrap; transition: all .18s ease; }
+    .chip:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+
+    /* Divisores e bandas */
+    .divider { height: 1px; background: rgba(255,255,255,0.08); margin: 28px 0; }
+    .band { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius); padding: 24px; }
+
+    @media (max-width: 900px) {
+      .grid.cols-3 { grid-template-columns: 1fr; }
+      .grid.cols-2 { grid-template-columns: 1fr; }
+      .nav { height: 64px; }
+    }
+  </style>
+
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">
+        <span class="brand-badge">CJ</span>
+        CorteJá
+      </a>
+      <nav class="menu">
+        <a href="/services/">Serviços</a>
+        <a href="#profissionais">Profissionais</a>
+        <a href="#contato">Contato</a>
+        <a class="menu-login" href="/login">Entrar</a>
+        <a class="cta" href="/signup">Criar conta</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="subnav">
+      <div class="container chips">
+        <a class="chip" href="#galeria">Galeria</a>
+        <a class="chip" href="#depoimentos">Depoimentos</a>
+        <a class="chip" href="#planos">Planos</a>
+        <a class="chip" href="#faq">FAQ</a>
+        <a class="chip" href="#horarios">Horários</a>
+        <a class="chip" href="#localizacao">Localização</a>
+        <a class="chip" href="#novidades">Novidades</a>
+      </div>
+    </div>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="grid cols-3">
+        <div>
+          <div class="pill">Barbearia Moderna</div>
+            <p class="muted section-content">Estilo, precisão e uma experiência premium de ponta a ponta.</p>
+            <p class="muted" style="margin-top: 0;">Endereço: Rua Exemplo, 123 — Centro, Sua Cidade</p>
+        </div>
+        <div>
+          <h4 style="margin:0 0 8px;">Contato</h4>
+          <p class="muted">Telefone: (11) 99999-0000</p>
+          <p class="muted">WhatsApp: (11) 98888-0000</p>
+          <p class="muted">Instagram: @corteja</p>
+        </div>
+        <div style="text-align: right;">
+          <h4 style="margin:0 0 8px;">Horários</h4>
+          <p class="muted">Seg–Sex: 09:00–20:00</p>
+          <p class="muted">Sábado: 09:00–18:00</p>
+          <p class="muted">Domingo: fechado</p>
+          <small style="display:block; margin-top:10px;">© {{ now|default:"2025" }} CorteJá. Todos os direitos reservados.</small>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

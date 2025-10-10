@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% block title %}CorteJá · Serviços{% endblock %}
+
+{% block head %}
+<style>
+  .services-header { display: grid; gap: 8px; }
+  .services-subnav { display: flex; gap: 10px; flex-wrap: wrap; }
+  .services-subnav .chip { text-decoration: none; }
+
+  /* Espaçamento superior para afastar o título do topo */
+  section.container-narrow { padding-top: 32px; }
+
+  .category { margin-top: 28px; }
+  .category .title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .category .title-row .subtitle { color: var(--muted); }
+
+  .services-grid { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 900px) { .services-grid { grid-template-columns: 1fr; } }
+
+  .service-card { display: grid; gap: 8px; }
+  .service-card .title { font-weight: 700; }
+  .service-card .meta { display: flex; align-items: center; justify-content: space-between; }
+  .service-card .desc { color: var(--muted); }
+  .service-card .price { color: var(--accent); font-weight: 800; }
+
+  /* Ações (Voltar/Agendar) refinadas */
+  .actions { display: flex; gap: 12px; align-items: center; justify-content: flex-start; margin-top: 8px; }
+  .actions .btn { padding: 10px 14px; border-radius: 10px; font-size: 14px; }
+  .actions .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+  .actions .btn-primary { background: var(--accent); color: #fff; border: none; }
+  @media (max-width: 640px) {
+    .actions { justify-content: space-between; }
+    .actions .btn { flex: 1; text-align: center; }
+  }
+  /* Ocultar subnav global nesta página */
+  .subnav { display: none !important; }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="section container-narrow">
+  <div class="services-header">
+    <h2 class="section-title">Serviços</h2>
+    <p class="section-sub">Mais opções para você escolher com conforto e qualidade.</p>
+    <div class="services-subnav">
+      <a class="chip" href="#cortes">Cortes</a>
+      <a class="chip" href="#barbas">Barbas</a>
+      <a class="chip" href="#tratamentos">Tratamentos</a>
+      <a class="chip" href="#estilo">Estilo</a>
+    </div>
+  </div>
+
+  <!-- Cortes -->
+  <div id="cortes" class="category">
+    <div class="title-row">
+      <h3 style="margin:0">Cortes</h3>
+      <span class="subtitle">Precisão e estilo para todas as ocasiões</span>
+    </div>
+    <div class="services-grid section-content">
+      <article class="card padded service-card">
+        <div class="pill">Clássico</div>
+        <div class="title">Corte Masculino</div>
+        <p class="desc">Tesoura e máquina com acabamento impecável.</p>
+        <div class="meta">
+          <small class="muted">30–40 min</small>
+          <div class="price">R$ 49</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Estilo</div>
+        <div class="title">Degradê</div>
+        <p class="desc">Transições suaves e bem marcadas.</p>
+        <div class="meta">
+          <small class="muted">40–50 min</small>
+          <div class="price">R$ 59</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Clássico</div>
+        <div class="title">Social</div>
+        <p class="desc">Elegante e discreto para o dia a dia.</p>
+        <div class="meta">
+          <small class="muted">30–40 min</small>
+          <div class="price">R$ 49</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Kids</div>
+        <div class="title">Corte Infantil</div>
+        <p class="desc">Cuidado e atenção para os pequenos.</p>
+        <div class="meta">
+          <small class="muted">30–40 min</small>
+          <div class="price">R$ 39</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Estilo</div>
+        <div class="title">Navalhado</div>
+        <p class="desc">Acabamento com navalha para máxima definição.</p>
+        <div class="meta">
+          <small class="muted">40–50 min</small>
+          <div class="price">R$ 69</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Combo</div>
+        <div class="title">Corte + Acabamento</div>
+        <p class="desc">Finalização premium com produtos selecionados.</p>
+        <div class="meta">
+          <small class="muted">50–60 min</small>
+          <div class="price">R$ 79</div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Barbas -->
+  <div id="barbas" class="category">
+    <div class="title-row">
+      <h3 style="margin:0">Barbas</h3>
+      <span class="subtitle">Modelagem precisa com cuidado profissional</span>
+    </div>
+    <div class="services-grid section-content">
+      <article class="card padded service-card">
+        <div class="pill">Premium</div>
+        <div class="title">Barba Definida</div>
+        <p class="desc">Toalha quente, balm e acabamento perfeito.</p>
+        <div class="meta">
+          <small class="muted">30–40 min</small>
+          <div class="price">R$ 39</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Premium</div>
+        <div class="title">Barba Completa</div>
+        <p class="desc">Higienização, hidratação e alinhamento total.</p>
+        <div class="meta">
+          <small class="muted">40–50 min</small>
+          <div class="price">R$ 59</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Estilo</div>
+        <div class="title">Design de Barba</div>
+        <p class="desc">Contornos personalizados conforme seu rosto.</p>
+        <div class="meta">
+          <small class="muted">40–50 min</small>
+          <div class="price">R$ 59</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Clássico</div>
+        <div class="title">Bigode</div>
+        <p class="desc">Ajuste fino e alinhamento.</p>
+        <div class="meta">
+          <small class="muted">15–20 min</small>
+          <div class="price">R$ 19</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Estilo</div>
+        <div class="title">Lâmina e Toalha Quente</div>
+        <p class="desc">Ritual tradicional para suavidade máxima.</p>
+        <div class="meta">
+          <small class="muted">30–40 min</small>
+          <div class="price">R$ 49</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Combo</div>
+        <div class="title">Barba + Hidratação</div>
+        <p class="desc">Definição com tratamento nutritivo.</p>
+        <div class="meta">
+          <small class="muted">50–60 min</small>
+          <div class="price">R$ 79</div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Tratamentos e Estilo -->
+  <div id="tratamentos" class="category">
+    <div class="title-row">
+      <h3 style="margin:0">Tratamentos</h3>
+      <span class="subtitle">Cuidados para manter o visual saudável</span>
+    </div>
+    <div class="services-grid section-content">
+      <article class="card padded service-card">
+        <div class="pill">Premium</div>
+        <div class="title">Hidratação Capilar</div>
+        <p class="desc">Reposição de nutrientes e maciez.</p>
+        <div class="meta">
+          <small class="muted">30–40 min</small>
+          <div class="price">R$ 49</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Estilo</div>
+        <div class="title">Camuflagem de Fios</div>
+        <p class="desc">Resultado natural e discreto.</p>
+        <div class="meta">
+          <small class="muted">40–50 min</small>
+          <div class="price">R$ 69</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Especial</div>
+        <div class="title">Sobrancelha</div>
+        <p class="desc">Alinhamento natural e preciso.</p>
+        <div class="meta">
+          <small class="muted">20–30 min</small>
+          <div class="price">R$ 25</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Relax</div>
+        <div class="title">Relaxamento</div>
+        <p class="desc">Redução de volume com cuidado técnico.</p>
+        <div class="meta">
+          <small class="muted">40–60 min</small>
+          <div class="price">R$ 89</div>
+        </div>
+      </article>
+      <article class="card padded service-card">
+        <div class="pill">Estilo</div>
+        <div class="title">Tonalização</div>
+        <p class="desc">Uniformização suave da cor.</p>
+        <div class="meta">
+          <small class="muted">40–60 min</small>
+          <div class="price">R$ 99</div>
+        </div>
+      </article>
+      <article id="estilo" class="card padded service-card">
+        <div class="pill">Spa</div>
+        <div class="title">Peeling Barbeiro</div>
+        <p class="desc">Renovação da pele para conforto e suavidade.</p>
+        <div class="meta">
+          <small class="muted">30–40 min</small>
+          <div class="price">R$ 79</div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="section-content actions">
+    <a href="/" class="btn btn-ghost">Voltar</a>
+    <a href="/signup" class="btn btn-primary">Agendar</a>
+  </div>
+</section>
+{% endblock %}
