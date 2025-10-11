@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}CorteJá · Contato{% endblock %}
+
+{% block head %}
+<style>
+  .contact-header { display: grid; gap: 8px; }
+  .contact-subnav { display: flex; gap: 10px; flex-wrap: wrap; }
+  .contact-subnav .chip { text-decoration: none; }
+
+  section.container-narrow { padding-top: 32px; }
+
+  .contact-grid { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  .contact-card { display: flex; flex-direction: column; gap: 8px; }
+  .contact-card .title { font-weight: 700; }
+  .contact-card .desc { color: var(--muted); }
+  .contact-card .meta { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: nowrap; }
+  .contact-card .meta small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .contact-card .meta .btn { flex-shrink: 0; }
+  /* Botões genéricos para uso nos cartões */
+  .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 10px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; }
+  .btn-primary { background: var(--accent); color: #fff; border: none; }
+  .btn-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.12); color: var(--muted); }
+  .btn-whatsapp { background: #25D366; color: #fff; border: none; }
+  .btn-whatsapp:hover { filter: brightness(1.05); }
+  .btn .icon { width: 16px; height: 16px; }
+
+  .band.map { height: 220px; display: grid; place-items: center; color: var(--muted); }
+
+  .form-grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+  .form-grid .full { grid-column: 1 / -1; }
+  .form-grid input, .form-grid textarea {
+    width: 100%; padding: 10px 12px; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03); color: var(--text);
+  }
+  /* Campos e rótulos aprimorados */
+  .field { display: grid; gap: 6px; }
+  .label-row { display: flex; align-items: baseline; gap: 6px; }
+  .label-row label { font-weight: 600; }
+  .required-asterisk { color: var(--accent); font-weight: 700; }
+  .help { color: var(--muted); font-size: 12px; }
+  .input, .textarea { transition: border-color .18s ease, box-shadow .18s ease; }
+  .input:focus, .textarea:focus {
+    outline: none; border-color: rgba(0,194,255,0.45);
+    box-shadow: 0 0 0 2px rgba(0,194,255,0.18);
+  }
+  ::placeholder { color: rgba(230,230,230,0.55); }
+  .form-actions { display: flex; gap: 12px; align-items: center; justify-content: flex-start; margin-top: 8px; }
+  .form-actions .btn { padding: 10px 14px; border-radius: 10px; font-size: 14px; }
+  .form-actions .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+  .form-actions .btn-primary { background: var(--accent); color: #fff; border: none; }
+
+  /* Ações (Voltar/Agendar) padronizadas */
+  .actions { display: flex; gap: 12px; align-items: center; justify-content: flex-start; margin-top: 8px; }
+  .actions .btn { padding: 10px 14px; border-radius: 10px; font-size: 14px; }
+  .actions .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+  .actions .btn-primary { background: var(--accent); color: #fff; border: none; }
+  @media (max-width: 640px) {
+    .actions { justify-content: space-between; }
+    .actions .btn { flex: 1; text-align: center; }
+  }
+
+  /* Ocultar subnav global nesta página */
+  .subnav { display: none !important; }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="section container-narrow">
+  <div class="contact-header">
+    <h2 class="section-title">Contato</h2>
+    <p class="section-sub">Fale com a equipe CorteJá. Estamos prontos para te atender.</p>
+    <div class="contact-subnav">
+      <a class="chip" href="#whatsapp">WhatsApp</a>
+      <a class="chip" href="#telefone">Telefone</a>
+      <a class="chip" href="#instagram">Instagram</a>
+      <a class="chip" href="#localizacao">Localização</a>
+    </div>
+  </div>
+
+  <div class="contact-grid section-content">
+    <!-- WhatsApp -->
+    <article id="whatsapp" class="card padded contact-card">
+      <div class="pill">Rápido</div>
+      <div class="title">WhatsApp</div>
+      <p class="desc">Converse diretamente com a equipe para dúvidas e agendamentos.</p>
+      <div class="meta">
+        <small class="muted">(11) 98888-0000</small>
+        <a class="btn btn-whatsapp" href="https://wa.me/5511988880000" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72l.54 3a2 2 0 0 1-.45 1.82l-2.2 2.2a16 16 0 0 0 6.59 6.59l2.2-2.2a2 2 0 0 1 1.82-.45l3 .54A2 2 0 0 1 22 16.92z" />
+          </svg>
+          Abrir WhatsApp
+        </a>
+      </div>
+    </article>
+
+    <!-- Telefone -->
+    <article id="telefone" class="card padded contact-card">
+      <div class="pill">Clássico</div>
+      <div class="title">Telefone</div>
+      <p class="desc">Fale por ligação durante o horário de atendimento.</p>
+      <div class="meta">
+        <small class="muted">(11) 99999-0000</small>
+        <a class="btn btn-primary" href="tel:+5511999990000">Ligar agora</a>
+      </div>
+    </article>
+
+    <!-- Instagram -->
+    <article id="instagram" class="card padded contact-card">
+      <div class="pill">Social</div>
+      <div class="title">Instagram</div>
+      <p class="desc">Acompanhe novidades, portfólio e promoções.</p>
+      <div class="meta">
+        <small class="muted">@corteja</small>
+        <a class="btn btn-primary" href="https://instagram.com/corteja" target="_blank" rel="noopener noreferrer">Ver perfil</a>
+      </div>
+    </article>
+  </div>
+
+  <!-- Localização e horários -->
+  <div id="localizacao" class="section-content">
+    <div class="band">
+      <div class="grid cols-2">
+        <div>
+          <h3 style="margin:0">Localização</h3>
+          <p class="muted" style="margin-top:8px;">Rua Exemplo, 123 — Centro, Sua Cidade</p>
+          <div class="band map" style="margin-top:12px;">Mapa em breve</div>
+        </div>
+        <div>
+          <h3 style="margin:0">Horários</h3>
+          <p class="muted" style="margin-top:8px;">Seg–Sex: 09:00–20:00 • Sábado: 09:00–18:00 • Domingo: fechado</p>
+          <p class="muted" style="margin-top:8px;">Estacionamento conveniado e acesso facilitado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulário de mensagem -->
+  <div class="section-content">
+    <article class="card padded">
+      <h3 style="margin-top:0">Envie uma mensagem</h3>
+      <p class="section-sub" style="margin-top:6px;">Responderemos o quanto antes. Informe seus dados e sua dúvida.</p>
+      <form method="post" action="#" novalidate>
+        {% csrf_token %}
+        <div class="form-grid">
+          <div class="field">
+            <div class="label-row">
+              <label for="nome">Nome</label>
+              <span class="required-asterisk" aria-hidden="true">*</span>
+            </div>
+            <input class="input" id="nome" name="nome" type="text" placeholder="Seu nome" required autocomplete="name" />
+            <small class="help">Ex.: João Silva</small>
+          </div>
+          <div class="field">
+            <div class="label-row">
+              <label for="email">Email</label>
+              <span class="required-asterisk" aria-hidden="true">*</span>
+            </div>
+            <input class="input" id="email" name="email" type="email" placeholder="voce@exemplo.com" required autocomplete="email" />
+            <small class="help">Usaremos para responder sua mensagem.</small>
+          </div>
+          <div class="field full">
+            <div class="label-row">
+              <label for="mensagem">Mensagem</label>
+              <span class="required-asterisk" aria-hidden="true">*</span>
+            </div>
+            <textarea class="textarea" id="mensagem" name="mensagem" rows="4" placeholder="Como podemos ajudar?" required></textarea>
+            <small class="help">Pode incluir serviço desejado e disponibilidade de horário.</small>
+          </div>
+        </div>
+        <div class="form-actions">
+          <a href="/" class="btn btn-ghost">Voltar</a>
+          <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+        </div>
+        <small class="help" style="display:block; margin-top:8px;">Ao enviar, você concorda com nossa política de privacidade.</small>
+      </form>
+    </article>
+  </div>
+
+  <div class="section-content actions">
+    <a href="/" class="btn btn-ghost">Voltar</a>
+    <a href="/signup" class="btn btn-primary">Agendar</a>
+  </div>
+</section>
+{% endblock %}
