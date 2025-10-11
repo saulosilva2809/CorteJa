@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}CorteJá · Profissionais{% endblock %}
+
+{% block head %}
+<style>
+  .professionals-header { display: grid; gap: 8px; }
+  .professionals-subnav { display: flex; gap: 10px; flex-wrap: wrap; }
+  .professionals-subnav .chip { text-decoration: none; }
+
+  /* Espaçamento superior para afastar o título do topo */
+  section.container-narrow { padding-top: 32px; }
+
+  .professionals-grid { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 900px) { .professionals-grid { grid-template-columns: 1fr; } }
+
+  .professional-card { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: center; }
+  .professional-card .avatar { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, #222733, #1a1f2a); border: 1px solid rgba(255,255,255,0.06); background-size: cover; background-position: center; }
+  .professional-card .name { font-weight: 700; }
+  .professional-card .role { color: var(--muted); }
+  .professional-card .meta { display: flex; align-items: center; justify-content: space-between; }
+  .professional-card .rating { color: var(--accent); font-weight: 800; }
+
+  /* Ações (Voltar/Agendar) refinadas */
+  .actions { display: flex; gap: 12px; align-items: center; justify-content: flex-start; margin-top: 8px; }
+  .actions .btn { padding: 10px 14px; border-radius: 10px; font-size: 14px; }
+  .actions .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+  .actions .btn-primary { background: var(--accent); color: #fff; border: none; }
+  @media (max-width: 640px) {
+    .actions { justify-content: space-between; }
+    .actions .btn { flex: 1; text-align: center; }
+  }
+
+  /* Ocultar subnav global nesta página */
+  .subnav { display: none !important; }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="section container-narrow">
+  <div class="professionals-header">
+    <h2 class="section-title">Profissionais</h2>
+    <p class="section-sub">Conheça nossa equipe dedicada ao seu melhor visual.</p>
+    <div class="professionals-subnav">
+      <a class="chip" href="#cortes">Cortes</a>
+      <a class="chip" href="#barbas">Barbas</a>
+      <a class="chip" href="#tratamentos">Tratamentos</a>
+      <a class="chip" href="#estilo">Estilo</a>
+    </div>
+  </div>
+
+  <div class="professionals-grid section-content">
+    <article class="card padded professional-card">
+      <div class="avatar" style="background-image:url('https://picsum.photos/id/64/200/200');"></div>
+      <div>
+        <div class="name">Rafael</div>
+        <div class="role">Especialista em cortes modernos</div>
+        <div class="meta">
+          <small class="muted">5+ anos</small>
+          <div class="rating">★★★★★</div>
+        </div>
+      </div>
+    </article>
+    <article class="card padded professional-card">
+      <div class="avatar" style="background-image:url('https://picsum.photos/id/65/200/200');"></div>
+      <div>
+        <div class="name">Bruno</div>
+        <div class="role">Barba e acabamento premium</div>
+        <div class="meta">
+          <small class="muted">4+ anos</small>
+          <div class="rating">★★★★★</div>
+        </div>
+      </div>
+    </article>
+    <article class="card padded professional-card">
+      <div class="avatar" style="background-image:url('https://picsum.photos/id/66/200/200');"></div>
+      <div>
+        <div class="name">Lucas</div>
+        <div class="role">Clássico com precisão</div>
+        <div class="meta">
+          <small class="muted">3+ anos</small>
+          <div class="rating">★★★★☆</div>
+        </div>
+      </div>
+    </article>
+    <article class="card padded professional-card">
+      <div class="avatar" style="background-image:url('https://picsum.photos/id/67/200/200');"></div>
+      <div>
+        <div class="name">Marcos</div>
+        <div class="role">Fade e linhas definidas</div>
+        <div class="meta">
+          <small class="muted">6+ anos</small>
+          <div class="rating">★★★★★</div>
+        </div>
+      </div>
+    </article>
+    <article class="card padded professional-card">
+      <div class="avatar" style="background-image:url('https://picsum.photos/id/68/200/200');"></div>
+      <div>
+        <div class="name">Thiago</div>
+        <div class="role">Barba tradicional com toalha quente</div>
+        <div class="meta">
+          <small class="muted">5+ anos</small>
+          <div class="rating">★★★★☆</div>
+        </div>
+      </div>
+    </article>
+    <article class="card padded professional-card" id="estilo">
+      <div class="avatar" style="background-image:url('https://picsum.photos/id/69/200/200');"></div>
+      <div>
+        <div class="name">André</div>
+        <div class="role">Cortes clássicos e penteados</div>
+        <div class="meta">
+          <small class="muted">4+ anos</small>
+          <div class="rating">★★★★★</div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="section-content actions">
+    <a href="/" class="btn btn-ghost">Voltar</a>
+    <a href="/signup" class="btn btn-primary">Agendar</a>
+  </div>
+</section>
+{% endblock %}
