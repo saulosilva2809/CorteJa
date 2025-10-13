@@ -31,6 +31,8 @@ INSTALLED_APPS = [
 
     'apps.base',
     'apps.client',
+
+    # Celery (não precisa app dedicado, mas mantemos flower via CLI)
 ]
 
 MIDDLEWARE = [
@@ -114,3 +116,29 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ---------------------------------
+# Celery & Redis configuration
+# ---------------------------------
+
+# Broker Redis URL
+CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='redis://localhost:6379/0')
+
+# Result backend Redis (opcional; útil para inspeção de resultados)
+CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default='redis://localhost:6379/1')
+
+# Fuso horário do Celery alinhado ao Django
+CELERY_TIMEZONE = TIME_ZONE
+
+# Aceita/serializa JSON
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+# Beat: local para agendamentos (se necessário)
+CELERY_BEAT_SCHEDULER = 'celery.beat.PersistentScheduler'
+CELERY_BEAT_SCHEDULE_FILENAME = str(BASE_DIR / 'celerybeat-schedule')
+
+# Conexão estável
+CELERY_BROKER_CONNECTION_MAX_RETRIES = 100
+CELERY_BROKER_POOL_LIMIT = 10
