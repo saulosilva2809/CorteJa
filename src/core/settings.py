@@ -31,8 +31,6 @@ INSTALLED_APPS = [
 
     'apps.base',
     'apps.client',
-
-    # Celery (não precisa app dedicado, mas mantemos flower via CLI)
 ]
 
 MIDDLEWARE = [
@@ -117,9 +115,13 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ---------------------------------
-# Celery & Redis configuration
-# ---------------------------------
+#  Informações para o envio de email
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
 # Broker Redis URL
 CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='redis://localhost:6379/0')
